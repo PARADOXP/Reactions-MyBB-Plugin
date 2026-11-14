@@ -1,4 +1,4 @@
-# Reactions — MyBB Plugin
+# Like Reactions — MyBB Plugin
 
 Adds a Facebook-style reaction system to MyBB posts with hover tooltips and AJAX functionality.
 
@@ -133,7 +133,7 @@ inc/languages/english/admin/reactions.lang.php
 **PARAD0X** — [MyBB Community profile](https://community.mybb.com/user-134311.html)
 
 - Website: https://mybb.epizy.com
-- Version: 2.1.0
+- Version: 1.3.5
 
 ## License
 
