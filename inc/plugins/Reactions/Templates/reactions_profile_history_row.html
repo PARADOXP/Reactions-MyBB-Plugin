@@ -1,0 +1,30 @@
+<div class="reactions-history-item contentRow">
+	<div class="contentRow-figure">
+		<div class="reaction-avatar-stack">
+			<img src="{$user_avatar}" alt="{$row['username']}" class="user-avatar-small" />
+			<div class="reaction-badge">
+				<img src="{$mybb->settings['bburl']}/{$reaction['image']}" alt="{$reaction['name']}" title="{$reaction['name']}" />
+			</div>
+		</div>
+	</div>
+	<div class="contentRow-main">
+		<div class="contentRow-header">
+			<div class="contentRow-title">
+				<span class="username">{$formatted_user}</span>
+			</div>
+			<div class="contentRow-meta">
+				<span class="contentRow-minor smalltext">{$formatted_date}</span>
+			</div>
+		</div>
+		<div class="contentRow-content">
+			<div class="content-info">
+				<div class="content-title-line">
+					<i class="fa fa-comment-alt smalltext"></i> <a href="{$content_link}" class="content-link">{$content_title}</a>
+				</div>
+				<div class="content-preview-box">
+					{$content_preview}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

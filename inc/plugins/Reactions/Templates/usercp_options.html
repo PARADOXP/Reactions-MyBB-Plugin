@@ -1,0 +1,84 @@
+<tr>
+    <td colspan='2'>
+        <span class='smalltext'><strong>{$lang->reactions_notifications_title}</strong></span>
+    </td>
+</tr>
+<tr>
+    <td class='trow1' colspan='2'>
+        <span class='smalltext'>{$lang->reactions_notifications_desc}</span>
+    </td>
+</tr>
+<tr>
+    <td class='trow2' colspan='2'>
+        <fieldset class='trow2'>
+            <legend><strong>{$lang->reactions_notifications_title}</strong></legend>
+            <table cellspacing='0' cellpadding='2' width='100%'>
+                <tr>
+                    <td colspan='2'>
+                        <label><input type='checkbox' name='reactions_notify[reactions_disabled]' value='1' {$reactions_notify_reactions_disabled} /> {$lang->reactions_notify_disabled}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan='2'>
+                        <label><input type='checkbox' name='reactions_notify[no_permission_use]' value='1' {$reactions_notify_no_permission_use} /> {$lang->reactions_notify_no_permission_use}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan='2'>
+                        <label><input type='checkbox' name='reactions_notify[no_permission_remove]' value='1' {$reactions_notify_no_permission_remove} /> {$lang->reactions_notify_no_permission_remove}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan='2'>
+                        <label><input type='checkbox' name='reactions_notify[disabled_in_forum]' value='1' {$reactions_notify_disabled_in_forum} /> {$lang->reactions_notify_disabled_in_forum}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan='2'>
+                        <label><input type='checkbox' name='reactions_notify[thread_closed]' value='1' {$reactions_notify_thread_closed} /> {$lang->reactions_notify_thread_closed}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan='2'>
+                        <label><input type='checkbox' name='reactions_notify[usergroup_no_give]' value='1' {$reactions_notify_usergroup_no_give} /> {$lang->reactions_notify_usergroup_no_give}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan='2'>
+                        <label><input type='checkbox' name='reactions_notify[recipient_no_receive]' value='1' {$reactions_notify_recipient_no_receive} /> {$lang->reactions_notify_recipient_no_receive}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan='2'>
+                        <label><input type='checkbox' name='reactions_notify[self_reaction_not_allowed]' value='1' {$reactions_notify_self_reaction_not_allowed} /> {$lang->reactions_notify_self_reaction_not_allowed}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan='2'>
+                        <label><input type='checkbox' name='reactions_notify[min_posts_required]' value='1' {$reactions_notify_min_posts_required} /> {$lang->reactions_notify_min_posts_required}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan='2'>
+                        <label><input type='checkbox' name='reactions_notify[min_reputation_required]' value='1' {$reactions_notify_min_reputation_required} /> {$lang->reactions_notify_min_reputation_required}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan='2'>
+                        <label><input type='checkbox' name='reactions_notify[daily_limit_reached]' value='1' {$reactions_notify_daily_limit_reached} /> {$lang->reactions_notify_daily_limit_reached}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan='2'>
+                        <label><input type='checkbox' name='reactions_notify[flood_control]' value='1' {$reactions_notify_flood_control} /> {$lang->reactions_notify_flood_control}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan='2'>
+                        <label><input type='checkbox' name='reactions_notify[reaction_success]' value='1' {$reactions_notify_reaction_success} /> {$lang->reactions_notify_reaction_success}</label>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </td>
+</tr>

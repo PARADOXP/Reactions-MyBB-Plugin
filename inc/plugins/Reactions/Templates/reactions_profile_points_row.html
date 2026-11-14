@@ -1,0 +1,23 @@
+<li class="reaction-list-item">
+    <div class="reaction-list-icon">
+        <img src="{$reaction_image}" alt="{$reaction_name}" class="reaction-image">
+    </div>
+    <div class="reaction-list-content">
+        <div class="reaction-list-info">
+            <span class="reaction-list-name">{$reaction_display_name}</span>
+            <div class="reaction-list-stats">
+                <div class="reaction-list-stat">
+                    <span class="reaction-list-stat-value">+{$reaction_points}</span>
+                    <span class="reaction-list-stat-label">{$lang->reactions_info_points}</span>
+                </div>
+                <div class="reaction-list-stat">
+                    <span class="reaction-list-stat-value">{$count}</span>
+                    <span class="reaction-list-stat-label">{$lang->count}</span>
+                </div>
+            </div>
+        </div>
+        <div class="reaction-list-total">
+            {$total_points}
+        </div>
+    </div>
+</li>

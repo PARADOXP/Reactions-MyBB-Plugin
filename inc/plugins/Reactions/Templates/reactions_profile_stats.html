@@ -1,0 +1,21 @@
+<table border="0" cellspacing="{$theme['borderwidth']}" cellpadding="{$theme['tablespace']}" class="tborder">
+	<tr>
+		<td class="thead" colspan="3"><strong>{$lang->reactions_title}</strong></td>
+	</tr>
+	<tr>
+		<td class="trow1" width="40%"><strong>{$lang->reactions_received}:</strong></td>
+		<td class="trow1"><a href="javascript:void(0);" class="reactions-history-link" data-type="received" data-uid="{$memprofile['uid']}">{$received_score}</a></td>
+		<td class="trow1" width="20%"><a href="{$mybb->settings['bburl']}/member.php?action=reactions_info" title="{$lang->reactions_info_tooltip}">{$lang->reactions_info}</a></td>
+	</tr>
+	<tr>
+		<td class="trow2" width="40%"><strong>{$lang->reactions_given}:</strong></td>
+		<td class="trow2"><a href="javascript:void(0);" class="reactions-history-link" data-type="given" data-uid="{$memprofile['uid']}">{$given_score}</a></td>
+		<td class="trow2" width="20%"></td>
+	</tr>
+	<tr>
+		<td class="trow1" width="40%"><strong>{$lang->reactions_points}:</strong></td>
+		<td class="trow1"><a href="javascript:void(0);" class="reactions-points-link" data-type="points" data-uid="{$memprofile['uid']}">{$reaction_points}</a></td>
+		<td class="trow1" width="20%"></td>
+	</tr>
+</table>
+<br />

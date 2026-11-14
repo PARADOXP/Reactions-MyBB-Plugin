@@ -1,0 +1,169 @@
+{
+  "group": {
+    "name": "reactions",
+    "title": "Reactions Settings",
+    "description": "Configure the reaction system with Facebook-style advanced options"
+  },
+  "settings": [
+    {
+      "name": "reactions_enabled",
+      "title": "Enable Reactions",
+      "description": "Globally enable or disable the reaction system.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": "1"
+    },
+    {
+      "name": "reactions_min_posts",
+      "title": "Minimum Posts to React",
+      "description": "Users must have at least this many posts to be able to give reactions. Super User Groups bypass this restriction.",
+      "optionscode": "numeric",
+      "value": "0",
+      "disporder": "2"
+    },
+    {
+      "name": "reactions_min_reputation",
+      "title": "Minimum Reputation to React",
+      "description": "Users must have at least this much reputation to be able to give reactions. Super User Groups bypass this restriction.",
+      "optionscode": "numeric",
+      "value": "0",
+      "disporder": "3"
+    },
+    {
+      "name": "reactions_self_react",
+      "title": "Allow Self-Reactions",
+      "description": "Allow users to react to their own posts. Note: Super User Groups can always react to their own posts regardless of this setting.",
+      "optionscode": "yesno",
+      "value": "0",
+      "disporder": "4"
+    },
+    {
+      "name": "reactions_closed_threads",
+      "title": "Allow Reactions in Closed Threads",
+      "description": "Allow users to react to posts in closed/locked threads. Super user groups bypass this restriction.",
+      "optionscode": "yesno",
+      "value": "0",
+      "disporder": "5"
+    },
+    {
+      "name": "reactions_edit_time_limit",
+      "title": "Reaction Time Limit (Minutes)",
+      "description": "Time in minutes a user has to change or remove their reaction. Set to 0 for unlimited. Super User Groups bypass this restriction.",
+      "optionscode": "numeric",
+      "value": "0",
+      "disporder": "6"
+    },
+    {
+      "name": "reactions_display_postbit",
+      "title": "Show Scores in Postbit",
+      "description": "Display total reaction scores in the post author information area.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": "7"
+    },
+    {
+      "name": "reactions_display_profile",
+      "title": "Show Stats in Profile",
+      "description": "Display reaction statistics and history on user profiles.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": "8"
+    },
+    {
+      "name": "reactions_user_notification_prefs",
+      "title": "Allow User Notification Preferences",
+      "description": "If enabled, users will see notification preference options in their UserCP to control which reaction notifications they receive. If disabled, all users will receive all reaction notifications.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": "9"
+    },
+    {
+      "name": "reactions_flood_time",
+      "title": "Reaction Flood Check",
+      "description": "Minimum time in seconds between giving reactions. Set to 0 to disable.",
+      "optionscode": "numeric",
+      "value": "0",
+      "disporder": "10"
+    },
+    {
+      "name": "reactions_excluded_forums",
+      "title": "Excluded Forums",
+      "description": "Comma-separated list of forum IDs where reactions should be disabled.",
+      "optionscode": "forumselect",
+      "value": "",
+      "disporder": "11"
+    },
+    {
+      "name": "reactions_integrate_myalerts",
+      "title": "Integrate with MyAlerts",
+      "description": "Send MyAlerts notifications when someone reacts to a user's post. Requires the MyAlerts plugin to be installed and activated.",
+      "optionscode": "yesno",
+      "value": "0",
+      "disporder": "13"
+    },
+    {
+      "name": "reactions_integrate_reputation",
+      "title": "Integrate with Reputation",
+      "description": "If enabled, reaction scores will be added to the user's total reputation score.",
+      "optionscode": "yesno",
+      "value": "0",
+      "disporder": "14"
+    },
+    {
+      "name": "reactions_reputation_allow_negative",
+      "title": "Allow Negative Reactions in Reputation",
+      "description": "If enabled, negative reaction scores (e.g., Angry = -1) will subtract from the user's reputation. If disabled, only positive and neutral reactions will count towards reputation.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": "15"
+    },
+    {
+      "name": "reactions_gift_reputation",
+      "title": "Convert Gifted Reactions to Reputation",
+      "description": "If enabled, reaction points given by administrators via the 'Give Reaction Points' tool will also be added to the user's reputation. If disabled, only regular post reactions will count towards reputation.",
+      "optionscode": "yesno",
+      "value": "1",
+      "disporder": "16"
+    },
+    {
+      "name": "reactions_view_groups",
+      "title": "User Groups Can View Reactions",
+      "description": "Select which user groups can view the reaction bar and statistics. Select 'All groups' to allow everyone, or leave empty to deny all.",
+      "optionscode": "groupselect",
+      "value": "-1",
+      "disporder": "17"
+    },
+    {
+      "name": "reactions_use_groups_list",
+      "title": "User Groups not Allowed to React",
+      "description": "Select user groups that CANNOT give reactions. Guests (GID 1) and Banned (GID 7) are blocked by default. Select 'None' to allow all groups, or 'All groups' to block everyone.",
+      "optionscode": "groupselect",
+      "value": "1,7",
+      "disporder": "18"
+    },
+    {
+      "name": "reactions_receive_groups",
+      "title": "User Groups not Allowed to Receive Reactions",
+      "description": "Select user groups that CANNOT receive reactions. Guests (GID 1) and Banned (GID 7) are blocked by default. Select 'None' to allow all groups, or 'All groups' to block everyone.",
+      "optionscode": "groupselect",
+      "value": "1,7",
+      "disporder": "19"
+    },
+    {
+      "name": "reactions_remove_groups_list",
+      "title": "User Groups Allowed to Remove",
+      "description": "Select which user groups can remove reactions. Select 'All groups' to allow everyone, or leave empty to deny all.",
+      "optionscode": "groupselect",
+      "value": "2,3,4,6",
+      "disporder": "21"
+    },
+    {
+      "name": "reactions_super_groups",
+      "title": "Super User Groups",
+      "description": "Select user groups that have super privileges for reactions. These groups bypass all restrictions including: daily limits, minimum posts/reputation requirements, excluded forums, closed threads, self-reaction restrictions, and time limits for editing/removing reactions.",
+      "optionscode": "groupselect",
+      "value": "3,4,6",
+      "disporder": "22"
+    }
+  ]
+}

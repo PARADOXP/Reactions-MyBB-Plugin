@@ -1,0 +1,24 @@
+<div class="contentRow">
+    <div class="contentRow-figure">
+        <a href="{$mybb->settings['bburl']}/member.php?action=profile&uid={$reaction['uid']}">
+            <img src="{$avatar_url}" alt="{$reaction['username']}" width="48" height="48">
+        </a>
+    </div>
+    <div class="contentRow-main">
+        <div class="contentRow-title">
+            <a
+                href="{$mybb->settings['bburl']}/member.php?action=profile&uid={$reaction['uid']}">{$formatted_username}</a>
+        </div>
+        <div class="contentRow-minor">
+            {$reaction['usertitle']}<br>
+            <ul class="listInline listInline--bullet">
+                <li>{$lang->reactions_overlay_messages}{$reaction['postnum']}</li>
+                <li>{$lang->reactions_overlay_score}{$reaction['reaction_score']}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="contentRow-extra">
+        <div class="contentRow-reactionIcon">{$reaction_img}</div>
+        <div class="contentRow-date">{$reacted_at}</div>
+    </div>
+</div>

@@ -1,0 +1,260 @@
+# Reaction Plugin - Quick Reference Card
+
+## Quick Check: Is Reaction Plugin Available?
+
+```php
+if(function_exists('reactions_get_active')) {
+    // Reaction Plugin is available - safe to use its functions
+}
+```
+
+---
+
+## Essential Hooks
+
+### Reaction Added
+```php
+$plugins->add_hook('reactions_after_add', 'your_callback');
+// Args: reaction_content_id, reaction_id, content_type, content_id, 
+//       giver_id, receiver_id, reaction_date, reaction_score
+```
+
+### Reaction Removed
+```php
+$plugins->add_hook('reactions_after_remove', 'your_callback');
+// Same args as reactions_after_add
+```
+
+### Reaction Updated
+```php
+$plugins->add_hook('reactions_after_update', 'your_callback');
+// Additional args: old_reaction_id, new_reaction_id, old_score, new_score, score_diff
+```
+
+### Points Added (Manually)
+```php
+$plugins->add_hook('reactions_points_added', 'your_callback');
+// Args: user_id, points, reason, content_type, content_id
+```
+
+---
+
+## User Stats Functions
+
+```php
+// Get user's received reaction points
+$score = reactions_get_user_reaction_score($user_id);
+
+// Get user's given reaction points
+$given_score = reactions_get_user_reaction_given_score($user_id);
+
+// Get count of reactions received
+$received_count = reactions_get_user_reaction_count($user_id);
+
+// Get count of reactions given
+$given_count = reactions_get_user_reaction_given_count($user_id);
+```
+
+---
+
+## Permission Functions
+
+```php
+// Check if user can react
+$result = reactions_can_react($content_type, $content_id, $user_id, $author_id);
+// Returns: ['can_react' => true/false, 'error' => 'message']
+
+// Check if user can remove reactions
+$can_remove = reactions_can_remove_reactions($user_id);
+
+// Get user permissions array
+$perms = reactions_get_user_permissions($user_id);
+// Returns: can_give_reactions, can_view_reactions, can_receive_reactions,
+//          can_remove_reactions, reaction_daily_limit, is_super
+```
+
+---
+
+## Reaction Data Functions
+
+```php
+// Get all active reactions
+$reactions = reactions_get_active();
+
+// Get specific reaction
+$reaction = reactions_get_reaction($reaction_id);
+
+// Get default reaction (Like)
+$default = reactions_get_default();
+
+// Get reaction point value
+$points = reactions_get_reaction_score($reaction_id);
+
+// Get reaction image HTML
+$image_html = reactions_get_reaction_image($reaction, 'small'); // small, medium
+```
+
+---
+
+## Common Patterns
+
+### Pattern: React to Specific Reaction Type
+```php
+function your_callback($args) {
+    if($args['reaction_id'] == 2) { // Love reaction
+        // Do something
+    }
+}
+```
+
+### Pattern: Check User's Reaction Count
+```php
+function your_callback($args) {
+    $count = reactions_get_user_reaction_count($args['receiver_id']);
+    if($count >= 100) {
+        // User has 100+ reactions
+    }
+}
+```
+
+### Pattern: Only for Posts
+```php
+function your_callback($args) {
+    if($args['content_type'] == 'post') {
+        $post = get_post($args['content_id']);
+        // Access $post['tid'], $post['fid'], etc.
+    }
+}
+```
+
+### Pattern: Ignore Self-Reactions
+```php
+function your_callback($args) {
+    if($args['giver_id'] == $args['receiver_id']) {
+        return; // Don't process self-reactions
+    }
+    // Process reaction
+}
+```
+
+---
+
+## Reaction IDs (Default)
+
+| ID | Name | Type | Score |
+|----|------|------|-------|
+| 1 | Like | Positive | +1 |
+| 2 | Love | Positive | +2 |
+| 3 | Haha | Positive | +1 |
+| 4 | Wow | Neutral | 0 |
+| 5 | Sad | Neutral | 0 |
+| 6 | Angry | Negative | -1 |
+| 7 | Dislike | Negative | -1 |
+
+**Note**: Always use `reactions_get_reaction($id)` to get current settings as admins can modify them.
+
+---
+
+## Database Quick Reference
+
+### Get Reactions Received by User
+```sql
+SELECT COUNT(*) FROM mybb_reaction_content 
+WHERE content_user_id = {user_id} AND is_counted = 1
+```
+
+### Get Reactions Given by User
+```sql
+SELECT COUNT(*) FROM mybb_reaction_content 
+WHERE reaction_user_id = {user_id} AND is_counted = 1
+```
+
+### Get Reaction Breakdown
+```sql
+SELECT r.title, COUNT(*) as count
+FROM mybb_reaction_content rc
+INNER JOIN mybb_reactions r ON rc.reaction_id = r.reaction_id
+WHERE rc.content_user_id = {user_id} AND rc.is_counted = 1
+GROUP BY rc.reaction_id
+```
+
+---
+
+## Common Mistakes to Avoid
+
+❌ **Don't assume Reaction Plugin is installed**
+```php
+// WRONG
+$score = reactions_get_user_reaction_score($user_id);
+
+// CORRECT
+if(function_exists('reactions_get_user_reaction_score')) {
+    $score = reactions_get_user_reaction_score($user_id);
+}
+```
+
+❌ **Don't forget to check for valid user IDs**
+```php
+// WRONG
+function your_callback($args) {
+    update_user_stats($args['receiver_id']);
+}
+
+// CORRECT
+function your_callback($args) {
+    if($args['receiver_id'] > 0) {
+        update_user_stats($args['receiver_id']);
+    }
+}
+```
+
+❌ **Don't run heavy queries directly in hook callbacks**
+```php
+// WRONG - This runs on EVERY reaction
+function your_callback($args) {
+    $db->query("SELECT * FROM huge_table ...");
+}
+
+// CORRECT - Use caching or queue for heavy operations
+function your_callback($args) {
+    // Add to processing queue
+    your_queue_add('process_reaction', $args);
+}
+```
+
+---
+
+## File Locations
+
+- Main plugin: `inc/plugins/reactions.php`
+- Integration hooks: `inc/plugins/Reactions/Functions/integration_hooks.php`
+- Developer docs: `inc/plugins/Reactions/Documents/`
+- Template: `inc/plugins/Reactions/Documents/PLUGIN_INTEGRATION_TEMPLATE.php`
+
+---
+
+## Quick Test Checklist
+
+- [ ] Works when Reaction Plugin is enabled
+- [ ] Gracefully handles when Reaction Plugin is disabled
+- [ ] Handles guest users (user_id = 0) properly
+- [ ] Handles deleted users/content gracefully
+- [ ] Works with all reaction types (positive, neutral, negative)
+- [ ] Works with self-reactions (if enabled)
+- [ ] Respects usergroup permissions
+- [ ] Doesn't cause performance issues
+
+---
+
+## Support
+
+- Full Guide: `inc/plugins/Reactions/Documents/README_FOR_DEVELOPERS.md`
+- Integration Template: `inc/plugins/Reactions/Documents/PLUGIN_INTEGRATION_TEMPLATE.php`
+- MyAlerts Example: `inc/plugins/Reactions/Functions/myalerts_functions.php`
+
+---
+
+**Print this page and keep it handy while developing!**
+
+**Version**: 1.3.2
+**Last Updated**: 2026-06-09
